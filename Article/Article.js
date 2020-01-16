@@ -85,11 +85,28 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Professional toe nail clipper',
+    date: 'Nov 22nnd, 1987',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+  function getARticle(title, date, firstParagraph, secondP)
+
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -112,3 +129,44 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function getArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstP = document.createElement('p');
+  const articleSecondP = document.createElement('p');
+  const articleThirdP = document.createElement('p');
+  const buttonExpand = document.createElement('span');
+ 
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(articleFirstP);
+  article.append(articleSecondP);
+  article.append(articleThirdP);
+  article.append(buttonExpand);
+ 
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  buttonExpand.classList.add('expandButton')
+  
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleFirstP.textContent = firstParagraph;
+  articleSecondP.textContent = secondParagraph;
+  articleThirdP.textContent = thirdParagraph;
+  buttonExpand.textContent = 'Click to Expand';
+ 
+  buttonExpand.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+    firstParagragh.classList.toggle('toggle-on');
+    secondParagragh.classList.toggle('toggle-on');
+    thirdParagragh.classList.toggle('toggle-on');
+ 
+  })
+ 
+  return article;
+}
+const articles = document.querySelector('.articles')
+data.forEach(x => {
+  articles.append(getArticle(x.title, x.date, x.firstParagraph, x.secondParagraph, x.thirdParagraph))
+})
